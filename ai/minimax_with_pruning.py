@@ -3,9 +3,9 @@ from ai.heuristic import *
 from game.constants import *
 from game import globals
 
-def alpha_beta_minimax(board, depth=globals.MINIMAX_DEPTH, alpha=-INFINITY, beta=INFINITY, max_player=True):
-
+def alpha_beta_minimax(board, depth=0, alpha=-INFINITY, beta=INFINITY, max_player=True):
     finish_of_game = game_finished(board)
+    available_moves = get_available_moves(board)
 
     if finish_of_game:
         if is_a_win(board, globals.AI_PIECE):
@@ -14,10 +14,9 @@ def alpha_beta_minimax(board, depth=globals.MINIMAX_DEPTH, alpha=-INFINITY, beta
             return 0, -INFINITY
         else:
             return 0, 0
-    if depth == 0:
+    if depth == globals.MINIMAX_DEPTH:
         return None, score_state(board, globals.AI_PIECE)
 
-    available_moves = get_available_moves(board)
 
     if max_player:
         best_score = -INFINITY
@@ -27,7 +26,7 @@ def alpha_beta_minimax(board, depth=globals.MINIMAX_DEPTH, alpha=-INFINITY, beta
             board_copy = copy.deepcopy(board)
             put_piece(board_copy, col, globals.AI_PIECE)
 
-            score = alpha_beta_minimax(board_copy, depth - 1, alpha, beta, False)[1]
+            score = alpha_beta_minimax(board_copy, depth + 1, alpha, beta, False)[1]
 
             if score > best_score:
                 best_score = score
@@ -48,7 +47,7 @@ def alpha_beta_minimax(board, depth=globals.MINIMAX_DEPTH, alpha=-INFINITY, beta
             board_copy = copy.deepcopy(board)
             put_piece(board_copy, col, globals.PLAYER_PIECE)
 
-            score = alpha_beta_minimax(board_copy, depth - 1, alpha, beta, True)[1]
+            score = alpha_beta_minimax(board_copy, depth + 1, alpha, beta, True)[1]
 
             if score < best_score:
                 best_score = score

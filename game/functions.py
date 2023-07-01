@@ -14,7 +14,7 @@ def put_piece(board, col, piece):
     board[row][col] = piece
 
 
-def is_valid_location(board, col):
+def is_valid_move(board, col):
     return board[ROW_COUNT - 1][col] == EMPTY_PIECE
 
 
@@ -48,7 +48,7 @@ def is_a_win(board, piece):
 def get_available_moves(board):
     valid_locations = []
     for c in range(COLUMN_COUNT):
-        if is_valid_location(board, c):
+        if is_valid_move(board, c):
             valid_locations.append(c)
     return valid_locations
 

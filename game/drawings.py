@@ -10,7 +10,7 @@ pygame.display.set_caption("Connect 4")
 font = pygame.font.Font(None, 36)
 
 def draw_board(board):
-    screen.fill(GAME_BACKGROUND_COLOR)  # Fill the screen with game background color
+    screen.fill(GAME_BACKGROUND_COLOR)
     turn_text = font.render(f"Turn: {player_name(globals.turn, globals.AI_PIECE)}", True, player_color(globals.turn))
     turn_x = WIDTH // 2 - turn_text.get_width() // 2
     turn_y = SQUARE_SIZE // 2 - turn_text.get_height() // 2

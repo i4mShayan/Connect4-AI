@@ -3,7 +3,7 @@ from ai.heuristic import *
 from game.constants import *
 from game import globals
 
-def normal_minimax_with_transposition_table(board, depth=globals.MINIMAX_DEPTH, max_play=True, transposition_table={}):
+def normal_minimax_with_transposition_table(board, depth=0, max_play=True, transposition_table={}):
 
     finish_of_game = game_finished(board)
 
@@ -14,7 +14,7 @@ def normal_minimax_with_transposition_table(board, depth=globals.MINIMAX_DEPTH, 
             return 0, -INFINITY
         else:
             return 0, 0
-    if depth == 0:
+    if depth == globals.MINIMAX_DEPTH:
         return None, score_state(board, globals.AI_PIECE)
 
     available_moves = get_available_moves(board)
@@ -32,7 +32,7 @@ def normal_minimax_with_transposition_table(board, depth=globals.MINIMAX_DEPTH, 
             if board_key in transposition_table:
                 score = transposition_table[board_key]
             else:
-                score = normal_minimax_with_transposition_table(board_copy, depth - 1, False, transposition_table)[1]
+                score = normal_minimax_with_transposition_table(board_copy, depth + 1, False, transposition_table)[1]
                 transposition_table[board_key] = score
 
             if score > best_score:
@@ -54,7 +54,7 @@ def normal_minimax_with_transposition_table(board, depth=globals.MINIMAX_DEPTH, 
             if board_key in transposition_table:
                 score = transposition_table[board_key]
             else:
-                score = normal_minimax_with_transposition_table(board_copy, depth - 1, True, transposition_table)[1]
+                score = normal_minimax_with_transposition_table(board_copy, depth + 1, True, transposition_table)[1]
                 transposition_table[board_key] = score
 
             if score < best_score:
