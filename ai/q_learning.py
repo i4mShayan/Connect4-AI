@@ -7,9 +7,9 @@ class QLearningAgent:
     def __init__(self):
         self.q_table = {}
         self.is_trained = False
-        self.epsilon = 0.5  # Exploration rate
-        self.alpha = 0.5  # Learning rate
-        self.gamma = 0.5  # Discount factor
+        self.epsilon = 0.5
+        self.alpha = 0.5
+        self.gamma = 0.5
 
     def get_action(self, state):
         if random.random() < self.epsilon:

@@ -17,8 +17,6 @@ def alpha_beta_minimax(board, depth=0, alpha=-INFINITY, beta=INFINITY, max_playe
     if depth == globals.MINIMAX_DEPTH:
         return None, score_state(board, globals.AI_PIECE)
 
-    print(globals.MINIMAX_DEPTH)
-
     if max_player:
         best_score = -INFINITY
         best_col = available_moves[0]
