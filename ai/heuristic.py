@@ -1,4 +1,5 @@
 from game.functions import *
+from game import globals
 
 def score_line(line, piece):
     opponent_piece = opponent(piece)
@@ -10,14 +11,14 @@ def score_line(line, piece):
         score += 5
     elif line.count(opponent_piece) == 3 and line.count(EMPTY_PIECE) == 1:
         score -= 10
-
+    elif line.count(piece) == 4:
+        score += 10000
+    elif line.count(opponent_piece) == 4:
+        score -= 10000
     return score
 
 def get_col(board, col):
     return [row[col] for row in board]
-
-def vertical_line(board, r, c):
-    return [board[r][c] for r in range(r, r + 4)]
 
 def score_horizontal_lines(board, piece):
     score = 0
@@ -26,6 +27,9 @@ def score_horizontal_lines(board, piece):
             line = board[row][col:col + 4]
             score += score_line(line, piece)
     return score
+
+def vertical_line(board, r, c):
+    return [board[r][c] for r in range(r, r + 4)]
 
 def score_vertical_lines(board, piece):
     score = 0

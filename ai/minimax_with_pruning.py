@@ -9,14 +9,15 @@ def alpha_beta_minimax(board, depth=0, alpha=-INFINITY, beta=INFINITY, max_playe
 
     if finish_of_game:
         if is_a_win(board, globals.AI_PIECE):
-            return 0, INFINITY
+            return None, INFINITY
         elif is_a_win(board, globals.PLAYER_PIECE):
-            return 0, -INFINITY
+            return None, -INFINITY
         else:
             return 0, 0
     if depth == globals.MINIMAX_DEPTH:
         return None, score_state(board, globals.AI_PIECE)
 
+    print(globals.MINIMAX_DEPTH)
 
     if max_player:
         best_score = -INFINITY
