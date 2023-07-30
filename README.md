@@ -18,8 +18,8 @@ You can download the report pdf from [here](report.pdf).
 - Normal Minimax
 - Normal Minimax with Transposition Table optimization (Dynamic Programming)
 - Minimax with Alpha Beta Pruning
-- Q Learning using the Q-table approach
+- Q-Learning using the Q-table approach
 
 ## Features
 - [x] 3 Different Levels For each Algorithm
-- [ ] Showing pop-up window with progress bar while Q-Learning agent is getting trained
+- [ ] Showing pop-up window with a progress bar while Q-Learning agent is getting trained
